@@ -1,13 +1,8 @@
 package org.example;
 
-import org.example.commands.AdminCommands;
 import org.example.controller.ApplicationController;
 import org.example.controller.ConsoleController;
-import org.example.models.ExchangeRate;
-import org.example.utils.ExchangeFormats;
 
-import java.time.LocalDate;
-import java.util.Currency;
 import java.util.List;
 
 public class Main {

@@ -23,7 +23,7 @@ public class UserCommands implements IUserCommands {
 
     @Override
     public void exchange(LocalDate date, BigDecimal cash, Currency startCurrency, Currency endCurrency) {
-        CSVDataManager csvDataManager = new CSVDataManager(date);  // LJLTKFNM!!!!
+        CSVDataManager csvDataManager = new CSVDataManager(date);  // todo Доделать!!!!
 
     }
 }
