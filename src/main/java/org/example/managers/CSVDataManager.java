@@ -66,7 +66,6 @@ public class CSVDataManager {
                     .build();
 
             bb.setMappingStrategy(getMappingStrategy());
-
             return bb.parse();
         } catch (IOException e) {
             throw new RuntimeException(e);

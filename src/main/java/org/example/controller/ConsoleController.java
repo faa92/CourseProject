@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.commands.AdminCommands;
 import org.example.commands.IAdminCommands;
+import org.example.commands.IUserCommands;
 import org.example.commands.UserCommands;
 import org.example.exceptions.BusinessException;
 import org.example.models.ExchangeRate;
@@ -23,8 +24,8 @@ public class ConsoleController implements ApplicationController {
             case "admin/putExchangeRate" -> {
                 LocalDate date = ExchangeFormats.parseDate(arguments.get(0));
                 Currency currency = ExchangeFormats.parseCurrency(arguments.get(1));
-                double rateBuy = ExchangeFormats.parseExchangeRate(arguments.get(2));
-                double rateSell = ExchangeFormats.parseExchangeRate(arguments.get(3));
+                BigDecimal rateBuy = ExchangeFormats.parseExchangeRate(arguments.get(2));
+                BigDecimal rateSell = ExchangeFormats.parseExchangeRate(arguments.get(3));
                 ExchangeRate exchangeRate = new ExchangeRate(currency, rateBuy, rateSell);
 
                 adminCommands.putExchangeRate(date, exchangeRate);

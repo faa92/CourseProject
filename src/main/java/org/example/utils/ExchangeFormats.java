@@ -27,10 +27,10 @@ public class ExchangeFormats {
         }
     }
 
-    public static double parseExchangeRate(String rate) {
+    public static BigDecimal parseExchangeRate(String rate) {
         try {
-            double parsedRate = Double.parseDouble(rate);
-            if (parsedRate <= 0){
+            BigDecimal parsedRate = BigDecimal.valueOf(Double.parseDouble(rate));
+            if (parsedRate.compareTo(BigDecimal.ZERO) < 0) {
                 throw BusinessException.invalidBuyRate();
             }
             return parsedRate;
