@@ -14,10 +14,8 @@ import java.util.Currency;
 import java.util.List;
 
 public class ConsoleController implements ApplicationController {
-
     private IAdminCommands adminCommands = new AdminCommands();
     private IUserCommands userCommands = new UserCommands();
-
     @Override
     public void execute(String command, List<String> arguments) {
         switch (command) {
@@ -46,7 +44,6 @@ public class ConsoleController implements ApplicationController {
                 Currency endCurrency = ExchangeFormats.parseCurrency(arguments.get(3));
                 userCommands.exchange(date, cash, startCurrency, endCurrency);
             }
-
             default -> throw BusinessException.invalidCommandFormat();
         }
 

@@ -20,11 +20,8 @@ public class AdminCommands implements IAdminCommands {
         } else {
             exchangeRateList.add(exchangeRate);
         }
-
         csvDataManager.write(exchangeRateList);
-
     }
-
     public void deleteExchangeRate(LocalDate date, String currency) {
         CSVDataManager csvDataManager = new CSVDataManager(date);
         List<ExchangeRate> exchangeRateList = csvDataManager.read();

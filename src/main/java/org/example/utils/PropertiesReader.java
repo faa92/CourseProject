@@ -8,19 +8,14 @@ public class PropertiesReader {
             return null;
         }
     }
-
     public enum AppProperties {
         LOCAL_CURRENCY("localCurrency");
-
         private String prop;
-
         AppProperties(String prop) {
             this.prop = prop;
         }
-
         public String getProp() {
             return prop;
         }
     }
-
 }

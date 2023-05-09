@@ -5,7 +5,7 @@ import org.example.controller.ConsoleController;
 
 import java.util.List;
 
-public class ApplicationExcange {
+public class ApplicationExchange {
     public static void main(String[] args) {
 
         ApplicationController controller = new ConsoleController();

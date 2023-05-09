@@ -38,13 +38,12 @@ public class UserCommands implements IUserCommands {
 
     @Override
     public void exchange(LocalDate date, BigDecimal cash, Currency startCurrency, Currency endCurrency) {
-        CSVDataManager csvDataManager = new CSVDataManager(date);  // todo!!!!!!
+        CSVDataManager csvDataManager = new CSVDataManager(date);
         List<ExchangeRate> exchangeRateList = csvDataManager.read();
         if (exchangeRateList.isEmpty()) {
             throw BusinessException.invalidDataNotPresent();
         }
         if (cash.compareTo(BigDecimal.ZERO) < 0) throw BusinessException.invalidSourceMoneyAmountFormat();
-
         String localCurrency = propertiesReader.getProperty(PropertiesReader.AppProperties.LOCAL_CURRENCY);
         Currency sourceLocalCurrency;
         if (localCurrency == null) {
@@ -66,7 +65,8 @@ public class UserCommands implements IUserCommands {
                 ? BigDecimal.ONE
                 : currencyToRate.get(startCurrency).getRateBuy();
 
-        BigDecimal targetSellRate = sourceLocalCurrency.equals(endCurrency) ? BigDecimal.ONE
+        BigDecimal targetSellRate = sourceLocalCurrency.equals(endCurrency)
+                ? BigDecimal.ONE
                 : currencyToRate.get(startCurrency).getRateSell();
 
         BigDecimal exchangedCash = cash.multiply(sourceBuyRate)
