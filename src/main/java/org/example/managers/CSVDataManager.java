@@ -1,7 +1,6 @@
 package org.example.managers;
 
 import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 import com.opencsv.bean.*;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
@@ -9,12 +8,14 @@ import org.example.models.ExchangeRate;
 import org.example.utils.ExchangeFormats;
 import org.example.utils.FileUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -65,7 +66,6 @@ public class CSVDataManager {
                     .build();
 
             bb.setMappingStrategy(getMappingStrategy());
-
             return bb.parse();
         } catch (IOException e) {
             throw new RuntimeException(e);

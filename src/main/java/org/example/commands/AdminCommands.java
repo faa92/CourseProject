@@ -2,10 +2,8 @@ package org.example.commands;
 
 import org.example.managers.CSVDataManager;
 import org.example.models.ExchangeRate;
-import org.example.utils.ExchangeFormats;
 
 import java.time.LocalDate;
-import java.util.Currency;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,11 +20,8 @@ public class AdminCommands implements IAdminCommands {
         } else {
             exchangeRateList.add(exchangeRate);
         }
-
         csvDataManager.write(exchangeRateList);
-
     }
-
     public void deleteExchangeRate(LocalDate date, String currency) {
         CSVDataManager csvDataManager = new CSVDataManager(date);
         List<ExchangeRate> exchangeRateList = csvDataManager.read();

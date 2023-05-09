@@ -1,7 +1,6 @@
 package org.example.utils;
 
 import org.example.exceptions.BusinessException;
-import org.example.exceptions.DateFormatException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -28,10 +27,10 @@ public class ExchangeFormats {
         }
     }
 
-    public static double parseExchangeRate(String rate) {
+    public static BigDecimal parseExchangeRate(String rate) {
         try {
-            double parsedRate = Double.parseDouble(rate);
-            if (parsedRate <= 0){
+            BigDecimal parsedRate = BigDecimal.valueOf(Double.parseDouble(rate));
+            if (parsedRate.compareTo(BigDecimal.ZERO) < 0) {
                 throw BusinessException.invalidBuyRate();
             }
             return parsedRate;
@@ -39,7 +38,6 @@ public class ExchangeFormats {
             throw BusinessException.invalidBuyRateFormat();
         }
     }
-
     public static String formatDate(LocalDate date) {
         try {
             return date.format(dateFormat);
@@ -47,8 +45,15 @@ public class ExchangeFormats {
             throw BusinessException.invalidDailyRatesDateFormat();
         }
     }
-
     public static BigDecimal parseCash(String cash) {
-        return null; //todo   парсиенг, ошибкибб отрицательное или нет
+        try {
+            BigDecimal parsCash = new BigDecimal(cash);
+            if (parsCash.compareTo(BigDecimal.ZERO) < 0) {
+                throw BusinessException.invalidSourceMoneyAmount();
+            }
+            return parsCash;
+        } catch (NumberFormatException exception) {
+            throw BusinessException.invalidSourceMoneyAmountFormat();
+        }
     }
 }
